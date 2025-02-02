@@ -73,7 +73,7 @@ class FlxTypedWeapon<TBullet:FlxBullet>
 	 * The delay in milliseconds (ms) between which each bullet is fired, set to zero to clear. By default there is no rate, as it can be controlled by FlxControl.setFireButton.
 	 * However if you are firing using the mouse you may wish to set a firing rate.
 	 */
-	public var fireRate:Int = 0;
+	public var fireRate:Float = 0;
 
 	/**
 	 * When a bullet goes outside of this bounds it will be automatically killed, freeing it up for firing again.
@@ -139,7 +139,7 @@ class FlxTypedWeapon<TBullet:FlxBullet>
 	 */
 	var bulletFactory:FlxTypedWeapon<TBullet>->TBullet;
 
-	var lastFired:Float = 0;
+	var lastFired:Int = 0;
 
 	var skipParentCollision:Bool;
 
@@ -439,7 +439,7 @@ class FlxTypedWeapon<TBullet:FlxBullet>
 
 		if ((object is FlxTilemap))
 		{
-			#if (flixel < version("5.9.0"))
+			#if (flixel < "5.9.0")
 			return cast(object, FlxTilemap).overlapsWithCallback(bullet);
 			#else
 			return cast(object, FlxTilemap).objectOverlapsTiles(bullet);

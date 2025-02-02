@@ -149,11 +149,11 @@ class FlxControlHandler
 	var _gravityY:Int = 0;
 
 	// The ms delay between firing when the key is held down
-	var _fireRate:Int;
+	var _fireRate:Float;
 	// The internal time when they can next fire
-	var _nextFireTime:Int = 0;
+	var _nextFireTime:Float = 0;
 	// The internal time of when when they last fired
-	var _lastFiredTime:Int;
+	var _lastFiredTime:Float;
 	// The fire key mode
 	var _fireKeyMode:Int;
 	// A function to call every time they fire
@@ -162,17 +162,17 @@ class FlxControlHandler
 	// The pixel height amount they jump (drag and gravity also both influence this)
 	var _jumpHeight:Int;
 	// The ms delay between jumping when the key is held down
-	var _jumpRate:Int;
+	var _jumpRate:Float;
 	// The jump key mode
 	var _jumpKeyMode:Int;
 	// The internal time when they can next jump
-	var _nextJumpTime:Int;
+	var _nextJumpTime:Float;
 	// The internal time of when when they last jumped
-	var _lastJumpTime:Int;
+	var _lastJumpTime:Float;
 	// A short window of opportunity for them to jump having just fallen off the edge of a surface
-	var _jumpFromFallTime:Int;
+	var _jumpFromFallTime:Float;
 	// Internal time of when they last collided with a valid jumpSurface
-	var _extraSurfaceTime:Int;
+	var _extraSurfaceTime:Float;
 	// The surfaces they can jump from (i.e. FLOOR)
 	var _jumpSurface:FlxDirectionFlags;
 	// A function to call every time they jump
@@ -586,7 +586,7 @@ class FlxControlHandler
 	 * @param	callback		A user defined function to call when it fires
 	 * @param	altKey			Specify an alternative fire key that works AS WELL AS the primary fire key (TODO)
 	 */
-	public function setFireButton(key:String, keymode:Int, repeatDelay:Int, callback:Void->Void, altKey:String = ""):Void
+	public function setFireButton(key:String, keymode:Int, repeatDelay:Float, callback:Void->Void, altKey:String = ""):Void
 	{
 		_fireKey = key;
 		_fireKeyMode = keymode;
@@ -613,7 +613,7 @@ class FlxControlHandler
 	 * @param	callback		A user defined function to call when the Sprite jumps
 	 * @param	altKey			Specify an alternative jump key that works AS WELL AS the primary jump key (TODO)
 	 */
-	public function setJumpButton(key:String, keymode:Int, height:Int, surface:FlxDirectionFlags, repeatDelay:Int = 250, jumpFromFall:Int = 0,
+	public function setJumpButton(key:String, keymode:Int, height:Int, surface:FlxDirectionFlags, repeatDelay:Int = 250, jumpFromFall:Float = 0,
 			?callback:Void->Void,
 			altKey:String = ""):Void
 	{
@@ -922,7 +922,7 @@ class FlxControlHandler
 					_lastFiredTime = FlxG.game.ticks;
 					_fireCallback();
 					fired = true;
-					_nextFireTime = _lastFiredTime + Std.int(_fireRate / FlxG.timeScale);
+					_nextFireTime = _lastFiredTime + (_fireRate / FlxG.timeScale);
 				}
 			}
 			else
@@ -1006,7 +1006,7 @@ class FlxControlHandler
 			}
 
 			_lastJumpTime = FlxG.game.ticks;
-			_nextJumpTime = _lastJumpTime + Std.int(_jumpRate / FlxG.timeScale);
+			_nextJumpTime = _lastJumpTime + (_jumpRate / FlxG.timeScale);
 
 			jumped = true;
 		}
