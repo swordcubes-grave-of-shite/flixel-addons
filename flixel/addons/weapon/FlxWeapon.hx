@@ -139,7 +139,7 @@ class FlxTypedWeapon<TBullet:FlxBullet>
 	 */
 	var bulletFactory:FlxTypedWeapon<TBullet>->TBullet;
 
-	var lastFired:Int = 0;
+	var lastFired:Float = 0;
 
 	var skipParentCollision:Bool;
 
