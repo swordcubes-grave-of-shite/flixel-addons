@@ -1,14 +1,15 @@
 package flixel.addons.display;
 
 #if (nme || flash)
-	#if (FLX_NO_COVERAGE_TEST && !(doc_gen))
-		#error "FlxRuntimeShader isn't available with nme or flash."
-	#end
+#if (FLX_NO_COVERAGE_TEST && !(doc_gen))
+#error "FlxRuntimeShader isn't available with nme or flash."
+#end
 #else
 import flixel.addons.system.macros.FlxRuntimeShaderMacro;
 import flixel.graphics.tile.FlxGraphicsShader;
 import flixel.util.FlxStringUtil;
 #if lime
+import lime.utils.Log;
 import lime.utils.Float32Array;
 #end
 import openfl.display.BitmapData;
@@ -509,6 +510,20 @@ class FlxRuntimeShader extends FlxGraphicsShader
 	@:noCompletion
 	private override function set_glFragmentSource(value:String):String
 	{
+		final replaceKeywords:Map<String, String> = [
+			"gl_FragColor" => "ofl_FragColor" // backwards compat with older shaders
+		];
+		for(k => v in replaceKeywords)
+			value = StringTools.replace(value, k, v);
+
+		final fragColorDef:String = "layout(location = 0) out vec4 ofl_FragColor;";
+		if(!StringTools.contains(value, fragColorDef))
+		{
+			// value = fragColorDef + "\n" + value;
+			#if lime
+			Log.warn('Shader may be missing #pragma header!');
+			#end
+		}
 		if (value != null)
 			value = value.replace("#pragma header", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentHeader')).replace("#pragma body", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentBody'));
 
