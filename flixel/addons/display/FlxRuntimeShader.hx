@@ -331,7 +331,7 @@ class FlxRuntimeShader extends FlxGraphicsShader
 		}
 		else
 		{
-			regex = ~/attribute ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
+			regex = ~/in ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
 		}
 
 		@:privateAccess
