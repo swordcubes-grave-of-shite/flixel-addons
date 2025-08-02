@@ -510,11 +510,17 @@ class FlxRuntimeShader extends FlxGraphicsShader
 	@:noCompletion
 	private override function set_glFragmentSource(value:String):String
 	{
-		final replaceKeywords:Map<String, String> = [
-			"gl_FragColor" => "ofl_FragColor" // backwards compat with older shaders
+		// backwards compat with older shaders
+		// use a 2d array because maps are unsorted so flixel_texture2D gets replaced before texture2D
+		final replaceKeywords:Array<Array<String>> = [
+			["gl_FragColor", "ofl_FragColor"],
+			["flixel_texture2D", "__flixel__"],
+			["texture2D", "texture"],
+            ["__flixel__", "flixel_texture2D"]
 		];
-		for(k => v in replaceKeywords)
-			value = StringTools.replace(value, k, v);
+		for (word in replaceKeywords) {
+			value = StringTools.replace(value, word[0], word[1]);
+		}
 
 		final fragColorDef:String = "layout(location = 0) out vec4 ofl_FragColor;";
 		if(!StringTools.contains(value, fragColorDef))
