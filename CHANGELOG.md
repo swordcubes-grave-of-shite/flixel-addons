@@ -1,7 +1,23 @@
-# 4.0.0 (TBD)
+# 4.0.0 (December 6, 2025)
 Removed deprecated classes
 - `FlxRayCastTilemap`: `FlxBaseTilemap` has an all-around better `ray()` method ([#455](https://github.com/HaxeFlixel/flixel-addons/pull/455))
 - `FlxMouseControl`: Use `FlxMouseEvent`, instead ([#455](https://github.com/HaxeFlixel/flixel-addons/pull/455))
+
+#### Changes and improvements:
+- Documentation: Various mprovements 
+    - `FlxGlitchEffect`, `FlxWaveEffect` and `FlxRainbowEffect` ([#457](https://github.com/HaxeFlixel/flixel-addons/issues/457))
+    - `FlxTypeText` ([#467](https://github.com/HaxeFlixel/flixel-addons/issues/467))
+([#469](https://github.com/HaxeFlixel/flixel-addons/issues/469))
+- Remove deprecation warnings for compatibility with Flixel 6.1.2 ([#471](https://github.com/HaxeFlixel/flixel-addons/pull/471))
+    - `FlxPoint`: Removed deprecated `addPoint`, `subtractPoint` and the like
+	- `FlxColor`: Replaced deprecated `to24Bit` with `rgb`
+	- `FlxSprite`: Removed refs to `useColorTransform` on new flixel versions >= 6.1.0
+- `FlxButtonPlus`: Deprecated, but not removed, use `FlxButton`, instead ([#472](https://github.com/HaxeFlixel/flixel-addons/pull/472))
+- `FlxButtonPlus`: Add `get_text` setter to fix reported CI issues ([#472](https://github.com/HaxeFlixel/flixel-addons/pull/472))
+
+#### Bugfixes:
+- `FlxSlider`: Fix hitbox when using secondary cameras ([#458](https://github.com/HaxeFlixel/flixel-addons/issues/458))
+- `FlxGridOverlay`: Prevent freeze when passing invalid cell size values ([#462](https://github.com/HaxeFlixel/flixel-addons/issues/462))
 
 ## 3.3.2 (January 31, 2025)
 ------------------------------
