@@ -1,15 +1,14 @@
 package flixel.addons.display;
 
 #if (nme || flash)
-#if (FLX_NO_COVERAGE_TEST && !(doc_gen))
-#error "FlxRuntimeShader isn't available with nme or flash."
-#end
+	#if (FLX_NO_COVERAGE_TEST && !(doc_gen))
+		#error "FlxRuntimeShader isn't available with nme or flash."
+	#end
 #else
 import flixel.addons.system.macros.FlxRuntimeShaderMacro;
 import flixel.graphics.tile.FlxGraphicsShader;
 import flixel.util.FlxStringUtil;
 #if lime
-import lime.utils.Log;
 import lime.utils.Float32Array;
 #end
 import openfl.display.BitmapData;
@@ -22,14 +21,15 @@ using StringTools;
 /**
  * An wrapper for Flixel/OpenFL's shaders, which takes fragment and vertex source
  * in the constructor instead of using macros so it can be provided at runtime.
- * 
+ *
  * @author MasterEric
  * @author Mihai Alexandru (M.A. Jigsaw)
- * 
+ *
  * @see https://github.com/openfl/openfl/blob/develop/src/openfl/utils/_internal/ShaderMacro.hx
  * @see https://dixonary.co.uk/blog/shadertoy
  */
-class FlxRuntimeShader extends FlxGraphicsShader {
+class FlxRuntimeShader extends FlxGraphicsShader
+{
 	/**
 	 * Creates a `FlxRuntimeShader` with specified shader sources.
 	 * If none is provided, it will use the default shader sources.
@@ -37,7 +37,8 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param fragmentSource The fragment shader source.
 	 * @param vertexSource The vertex shader source.
 	 */
-	public function new(?fragmentSource:String, ?vertexSource:String):Void {
+	public function new(?fragmentSource:String, ?vertexSource:String):Void
+	{
 		if (fragmentSource != null && fragmentSource.length > 0)
 			glFragmentSource = fragmentSource;
 		else
@@ -57,10 +58,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setFloat(name:String, value:Float):Void {
+	public function setFloat(name:String, value:Float):Void
+	{
 		final shaderParameter:ShaderParameter<Float> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader float parameter "$name" not found.');
 			return;
 		}
@@ -73,10 +76,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getFloat(name:String):Null<Float> {
+	public function getFloat(name:String):Null<Float>
+	{
 		final shaderParameter:ShaderParameter<Float> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader float parameter "$name" not found.');
 			return null;
 		}
@@ -90,10 +95,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setFloatArray(name:String, value:Array<Float>):Void {
+	public function setFloatArray(name:String, value:Array<Float>):Void
+	{
 		final shaderParameter:ShaderParameter<Float> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader float[] parameter "$name" not found.');
 			return;
 		}
@@ -106,10 +113,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getFloatArray(name:String):Null<Array<Float>> {
+	public function getFloatArray(name:String):Null<Array<Float>>
+	{
 		final shaderParameter:ShaderParameter<Float> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader float[] parameter "$name" not found.');
 			return null;
 		}
@@ -123,10 +132,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setInt(name:String, value:Int):Void {
+	public function setInt(name:String, value:Int):Void
+	{
 		final shaderParameter:ShaderParameter<Int> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader int parameter "$name" not found.');
 			return;
 		}
@@ -139,10 +150,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getInt(name:String):Null<Int> {
+	public function getInt(name:String):Null<Int>
+	{
 		final shaderParameter:ShaderParameter<Int> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader int parameter "$name" not found.');
 			return null;
 		}
@@ -156,10 +169,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setIntArray(name:String, value:Array<Int>):Void {
+	public function setIntArray(name:String, value:Array<Int>):Void
+	{
 		final shaderParameter:ShaderParameter<Int> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader int[] parameter "$name" not found.');
 			return;
 		}
@@ -172,10 +187,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getIntArray(name:String):Null<Array<Int>> {
+	public function getIntArray(name:String):Null<Array<Int>>
+	{
 		final shaderParameter:ShaderParameter<Int> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader int[] parameter "$name" not found.');
 			return null;
 		}
@@ -189,10 +206,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setBool(name:String, value:Bool):Void {
+	public function setBool(name:String, value:Bool):Void
+	{
 		final shaderParameter:ShaderParameter<Bool> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader bool parameter "$name" not found.');
 			return;
 		}
@@ -205,10 +224,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getBool(name:String):Null<Bool> {
+	public function getBool(name:String):Null<Bool>
+	{
 		final shaderParameter:ShaderParameter<Bool> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader bool parameter "$name" not found.');
 			return null;
 		}
@@ -222,10 +243,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setBoolArray(name:String, value:Array<Bool>):Void {
+	public function setBoolArray(name:String, value:Array<Bool>):Void
+	{
 		final shaderParameter:ShaderParameter<Bool> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader bool[] parameter "$name" not found.');
 			return;
 		}
@@ -238,10 +261,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 *
 	 * @param name The name of the parameter to retrieve.
 	 */
-	public function getBoolArray(name:String):Null<Array<Bool>> {
+	public function getBoolArray(name:String):Null<Array<Bool>>
+	{
 		final shaderParameter:ShaderParameter<Bool> = Reflect.field(data, name);
 
-		if (shaderParameter == null) {
+		if (shaderParameter == null)
+		{
 			FlxG.log.warn('Shader bool[] parameter "$name" not found.');
 			return null;
 		}
@@ -255,10 +280,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to modify.
 	 * @param value The new value to use.
 	 */
-	public function setSampler2D(name:String, value:BitmapData):Void {
+	public function setSampler2D(name:String, value:BitmapData):Void
+	{
 		final shaderInput:ShaderInput<BitmapData> = Reflect.field(data, name);
 
-		if (shaderInput == null) {
+		if (shaderInput == null)
+		{
 			FlxG.log.warn('Shader sampler2D input "$name" not found.');
 			return;
 		}
@@ -272,10 +299,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	 * @param name The name of the parameter to retrieve.
 	 * @return The value of the parameter.
 	 */
-	public function getSampler2D(name:String):Null<BitmapData> {
+	public function getSampler2D(name:String):Null<BitmapData>
+	{
 		final shaderInput:ShaderInput<BitmapData> = Reflect.field(data, name);
 
-		if (shaderInput == null) {
+		if (shaderInput == null)
+		{
 			FlxG.log.warn('Shader sampler2D input "$name" not found.');
 			return null;
 		}
@@ -286,25 +315,28 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	/**
 	 * Convert the shader to a readable string name. Useful for debugging.
 	 */
-	public function toString():String {
-		return FlxStringUtil.getDebugString([
-			for (field in Reflect.fields(data))
-				LabelValuePair.weak(field, Reflect.field(data, field))
-		]);
+	public function toString():String
+	{
+		return FlxStringUtil.getDebugString([for (field in Reflect.fields(data)) LabelValuePair.weak(field, Reflect.field(data, field))]);
 	}
 
 	@:noCompletion
-	private override function __processGLData(source:String, storageType:String):Void {
+	private override function __processGLData(source:String, storageType:String):Void
+	{
 		var lastMatch = 0, position, regex, name, type;
 
-		if (storageType == "uniform") {
+		if (storageType == "uniform")
+		{
 			regex = ~/uniform ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
-		} else {
-			regex = ~/in ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
+		}
+		else
+		{
+			regex = ~/attribute ([A-Za-z0-9]+) ([A-Za-z0-9_]+)/;
 		}
 
 		@:privateAccess
-		while (regex.matchSub(source, lastMatch)) {
+		while (regex.matchSub(source, lastMatch))
+		{
 			type = regex.matched(1);
 			name = regex.matched(2);
 
@@ -313,13 +345,15 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 
 			var isUniform = (storageType == "uniform");
 
-			if (StringTools.startsWith(type, "sampler")) {
+			if (StringTools.startsWith(type, "sampler"))
+			{
 				var input = new ShaderInput<BitmapData>();
 				input.name = name;
 				input.__isUniform = isUniform;
 				__inputBitmapData.push(input);
 
-				switch (name) {
+				switch (name)
+				{
 					case "openfl_Texture":
 						__texture = input;
 					case "bitmap":
@@ -329,12 +363,17 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 
 				Reflect.setField(__data, name, input);
 
-				try {
+				try
+				{
 					if (__isGenerated)
 						Reflect.setField(this, name, input);
-				} catch (e:Dynamic) {}
-			} else if (!Reflect.hasField(__data, name) || Reflect.field(__data, name) == null) {
-				var parameterType:ShaderParameterType = switch (type) {
+				}
+				catch (e:Dynamic) {}
+			}
+			else if (!Reflect.hasField(__data, name) || Reflect.field(__data, name) == null)
+			{
+				var parameterType:ShaderParameterType = switch (type)
+				{
 					case "bool": BOOL;
 					case "double", "float": FLOAT;
 					case "int", "uint": INT;
@@ -359,7 +398,8 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 					default: null;
 				}
 
-				var length = switch (parameterType) {
+				var length = switch (parameterType)
+				{
 					case BOOL2, INT2, FLOAT2: 2;
 					case BOOL3, INT3, FLOAT3: 3;
 					case BOOL4, INT4, FLOAT4, MATRIX2X2: 4;
@@ -368,14 +408,16 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 					default: 1;
 				}
 
-				var arrayLength = switch (parameterType) {
+				var arrayLength = switch (parameterType)
+				{
 					case MATRIX2X2: 2;
 					case MATRIX3X3: 3;
 					case MATRIX4X4: 4;
 					default: 1;
 				}
 
-				switch (parameterType) {
+				switch (parameterType)
+				{
 					case BOOL, BOOL2, BOOL3, BOOL4:
 						var parameter = new ShaderParameter<Bool>();
 						parameter.name = name;
@@ -386,16 +428,19 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 						parameter.__length = length;
 						__paramBool.push(parameter);
 
-						if (name == "openfl_HasColorTransform") {
+						if (name == "openfl_HasColorTransform")
+						{
 							__hasColorTransform = parameter;
 						}
 
 						Reflect.setField(__data, name, parameter);
 
-						try {
+						try
+						{
 							if (__isGenerated)
 								Reflect.setField(this, name, parameter);
-						} catch (e:Dynamic) {}
+						}
+						catch (e:Dynamic) {}
 
 					case INT, INT2, INT3, INT4:
 						var parameter = new ShaderParameter<Int>();
@@ -409,10 +454,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 
 						Reflect.setField(__data, name, parameter);
 
-						try {
+						try
+						{
 							if (__isGenerated)
 								Reflect.setField(this, name, parameter);
-						} catch (e:Dynamic) {}
+						}
+						catch (e:Dynamic) {}
 
 					default:
 						var parameter = new ShaderParameter<Float>();
@@ -428,8 +475,10 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 						parameter.__length = length;
 						__paramFloat.push(parameter);
 
-						if (StringTools.startsWith(name, "openfl_")) {
-							switch (name) {
+						if (StringTools.startsWith(name, "openfl_"))
+						{
+							switch (name)
+							{
 								case "openfl_Alpha": __alpha = parameter;
 								case "openfl_ColorMultiplier": __colorMultiplier = parameter;
 								case "openfl_ColorOffset": __colorOffset = parameter;
@@ -443,10 +492,12 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 
 						Reflect.setField(__data, name, parameter);
 
-						try {
+						try
+						{
 							if (__isGenerated)
 								Reflect.setField(this, name, parameter);
-						} catch (e:Dynamic) {}
+						}
+						catch (e:Dynamic) {}
 				}
 			}
 
@@ -456,28 +507,10 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	}
 
 	@:noCompletion
-	private override function set_glFragmentSource(value:String):String {
-		// backwards compat with older shaders
-		// use a 2d array because maps are unsorted so flixel_texture2D gets replaced before texture2D
-		final replaceKeywords:Array<Array<String>> = [
-			["gl_FragColor", "ofl_FragColor"],
-			["flixel_texture2D", "__flixel__"],
-			["texture2D", "texture"],
-			["__flixel__", "flixel_texture2D"]
-		];
-		for (word in replaceKeywords) {
-			value = value.replace(word[0], word[1]);
-		}
-
-		if (!value.contains("#pragma header")) {
-			// value = fragColorDef + "\n" + value;
-			#if lime
-			Log.warn('Shader may be missing #pragma header!');
-			#end
-		}
+	private override function set_glFragmentSource(value:String):String
+	{
 		if (value != null)
-			value = value.replace("#pragma header", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentHeader'))
-				.replace("#pragma body", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentBody'));
+			value = value.replace("#pragma header", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentHeader')).replace("#pragma body", FlxRuntimeShaderMacro.retrieveMetadata('glFragmentBody'));
 
 		if (value != __glFragmentSource)
 			__glSourceDirty = true;
@@ -486,10 +519,10 @@ class FlxRuntimeShader extends FlxGraphicsShader {
 	}
 
 	@:noCompletion
-	private override function set_glVertexSource(value:String):String {
+	private override function set_glVertexSource(value:String):String
+	{
 		if (value != null)
-			value = value.replace("#pragma header", FlxRuntimeShaderMacro.retrieveMetadata('glVertexHeader'))
-				.replace("#pragma body", FlxRuntimeShaderMacro.retrieveMetadata('glVertexBody'));
+			value = value.replace("#pragma header", FlxRuntimeShaderMacro.retrieveMetadata('glVertexHeader')).replace("#pragma body", FlxRuntimeShaderMacro.retrieveMetadata('glVertexBody'));
 
 		if (value != __glVertexSource)
 			__glSourceDirty = true;

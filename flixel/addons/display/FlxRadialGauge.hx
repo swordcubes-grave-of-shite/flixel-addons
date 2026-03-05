@@ -137,10 +137,10 @@ class FlxRadialWipeShader extends flixel.system.FlxAssets.FlxShader
 			{
 				float amount = min(1.0, max(0.0, _amount));
 				vec4 bitmap = flixel_texture2D(bitmap, openfl_TextureCoordv);
-				ofl_FragColor = mix(bitmap, vec4(0.0), wedge(openfl_TextureCoordv, amount));
+				gl_FragColor = mix(bitmap, vec4(0.0), wedge(openfl_TextureCoordv, amount));
 			}
 			else
-				ofl_FragColor = vec4(0.0);
+				gl_FragColor = vec4(0.0);
 		}')
 	public function new()
 	{
