@@ -11,7 +11,7 @@ import flixel.FlxG;
 import flixel.input.keyboard.FlxKey;
 #if sys
 import lime.ui.FileDialog;
-import lime.ui.FileDialogType;
+import lime.ui.FileDialogFilter;
 import openfl.display.PNGEncoderOptions;
 #else
 import openfl.net.FileReference;
@@ -181,22 +181,18 @@ class FlxScreenGrab extends FlxBasic
 		documentsDirectory = lime.system.System.documentsDirectory;
 		#end
 
-		var fd:FileDialog = new FileDialog();
-
 		var path = "";
-
-		fd.onSelect.add(function(str:String)
-		{
-			path = fixFilename(str);
-			var f = sys.io.File.write(path, true);
-			f.writeString(png.readUTFBytes(png.length));
-			f.close();
-			path = null;
-		});
-
 		try
 		{
-			fd.browse(FileDialogType.SAVE, "*.png", documentsDirectory);
+		    final callback = function(str:String, filter:FileDialogFilter)
+			{
+				path = fixFilename(str);
+				var f = sys.io.File.write(path, true);
+				f.writeString(png.readUTFBytes(png.length));
+				f.close();
+				path = null;
+			};
+		    FileDialog.saveFile(FlxG.stage.window, callback, [{name: "*.png (Portable Network Graphics)", pattern: "png"}], documentsDirectory);
 		}
 		catch (msg:String)
 		{
